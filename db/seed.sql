@@ -1,9 +1,24 @@
 USE employee
+ INSERT INTO department (id,department_name)
+ VALUES
+ ('Engineering')
+ ('Sales')
+ ('Legal')
+ ('Fiance');
 
-INSERT INTO employee(first_name,last_name,job_title,department,salary,manager)
+ INSERT INTO roles (title,salary,department_id)
+('Software developer',95000,1)
+('Lawyer',100000,3)
+('Lead Engineer',200000,1)
+('Accountant',100000,4)
+('Salesperson',90000,2);
+
+INSERT INTO employee(first_name,last_name,role_id,manager_id)
 VALUES
-('Belcher' , 'Bob' , 'Engineer', 'Engineering' ,50000,'Calvin Fischoeder'),
-('Belcher' , 'Linda', 'Salesperson' , 'Sales',90000,'null'),
-('Belcher', 'Tina', 'Lawyer', 'Legal' ,100000,'Jimmy Pesto jr'),
-('Belcher', 'Gene', 'Software Engineer', 'Engineering',95000,'Calvin Fischoeder'),
-('Belcher', 'Louise', 'Accountant', 'Finance',100000,'null');
+('Fischoeder','Calvin' , 3, null)
+('Belcher' , 'Bob' , 1 ,1),
+('Belcher' , 'Linda', 5, null),
+('Belcher', 'Tina', 2, null),
+('Belcher', 'Gene', 1,1),
+('Belcher', 'Louise', 4, null);
+
