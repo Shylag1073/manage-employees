@@ -7,7 +7,7 @@ const db = mysql.createConnection(
       user: 'root',
       // Your MySQL password
       password:process.env.SQLPASSWORD,
-      database: 'SHYLA'
+      database: 'employees'
     },
     console.log('Connected to the SHYLA database.')
 
@@ -16,3 +16,5 @@ const db = mysql.createConnection(
   db.connect(function(err){
       if (err) throw err
       });
+
+      module.exports=db 

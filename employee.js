@@ -1,7 +1,11 @@
 const inquirer = require("inquirer");
 const mysql =("mysql2");
+const connection = require("./db/connection");
 
 // beginning of questions
+function start(){
+
+
 inquirer
 .prompt({
     type:"list",
@@ -105,7 +109,9 @@ inquirer
                         console.log(result);
                     }
                 );
+                start()
             }
+            
             //view roles
              else if (answer.View === "role") {
                 connection.query(
@@ -116,6 +122,7 @@ inquirer
                         console.log(result);
                     }
                 );
+                start()
             }
             // view employee
             else if (answer.View === "employee") {
@@ -129,6 +136,7 @@ inquirer
                 );
             }
         });
+        
         /// Removing  stuff start 
  } else if (answer.Options === "remove"){
      inquirer
@@ -161,6 +169,7 @@ inquirer
                      }
                  );
              });
+             start()
          }
       //// remove role start
      else if (answer.Remove === "role") {
@@ -183,6 +192,7 @@ inquirer
                 }
             );
         });
+        start()
     }
     /// remove employeee 
      else if (answer.Remove === "employee") {
@@ -205,9 +215,12 @@ inquirer
                 }
             );
         });
+        start()
     }
 
      });
  
     } 
 });
+}
+start()

@@ -8,5 +8,23 @@
   },
   "devDependencies": {
     "jest": "^27.5.1"
-  }
+  },
+  "scripts": {
+    "start": "node employee.js"
+  },
+  "name": "manage-employees",
+  "description": "",
+  "version": "1.0.0",
+  "main": "employee.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shylag1073/manage-employees.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shylag1073/manage-employees/issues"
+  },
+  "homepage": "https://github.com/Shylag1073/manage-employees#readme"
 }
