@@ -35,6 +35,18 @@ inquirer
                })
                .then(function(answer){
                    console.log(answer);
+                   connection.query(
+                    `INSERT INTO department
+                    (name)
+                VALUES
+                   ('${answer.Depname}')`,
+                    {name: answer.View},
+                    function(error,result,fields) {
+                        if (error) throw error;
+                        console.log(result);
+                    }
+                );
+                start()
                })
             }
             // adding role
@@ -55,6 +67,17 @@ inquirer
                 }])
                 .then(function(answer){
                     console.log(answer);
+                    connection.query(
+                        `INSERT INTO role (title, salary, department_id)
+                        VALUES
+                       ('${answer.rolname}', ${answer.amount}, ${answer.DepID})`,
+                        {name: answer.View},
+                        function(error,result,fields) {
+                            if (error) throw error;
+                            console.log(result);
+                        }
+                    );
+                    start()
                 });
             }
             
@@ -74,17 +97,29 @@ inquirer
                   },
                       {
                     type: "input",
-                    message: "What role does this employee have?",
+                    message: "What is the id of the role this employee is to have?",
                     name: "Emrole"
                   },
                       {
                     type: "input",
-                    message: "Who is the manager of this employee?",
+                    message: "What is the ID of the manager for this employee?",
                     name: "Emboss"
                   }
                 ])
                 .then(function(answer){
                     console.log(answer);
+                    connection.query(
+                        `INSERT INTO employee
+                        (first_name, last_name, role_id, manager_id)
+                    VALUES
+                       ('${answer.first}', '${answer.last}', ${answer.Emrole}, ${answer.Emboss})`,
+                        {name: answer.View},
+                        function(error,result,fields) {
+                            if (error) throw error;
+                            console.log(result);
+                        }
+                    );
+                    start()
                 })
             }
 
@@ -134,6 +169,7 @@ inquirer
                         console.log(result);
                     }
                 );
+                start()
             }
         });
         
@@ -161,22 +197,21 @@ inquirer
                  connection.connect();
 
                  connection.query(
-                     "DELETE FROM department WHERE ?",
-                     {name:answer.removeDep},
-                     function(error,results,field) {
+                     `DELETE FROM department WHERE name = '${answer.removeDep}'`,
+                     function(error, results, fields) {
                          if (error) throw error;
                          console.log(results);
-                     }
-                 );
+                        }
+                        );
+                        start()
              });
-             start()
          }
       //// remove role start
      else if (answer.Remove === "role") {
         inquirer
         .prompt({
             type:"input",
-            message:"What is the name of the role you would like to remove?",
+            message:"What is the title of the role you would like to remove?",
             name:"removeRole"
         })
         .then(function(answer){
@@ -184,38 +219,43 @@ inquirer
             connection.connect();
 
             connection.query(
-                "DELETE FROM role WHERE ?",
-                {name:answer.removeRole},
-                function(error,results,field) {
+                `DELETE FROM role WHERE title = '${answer.removeRole}'`,
+                function(error,results,fields) {
                     if (error) throw error;
                     console.log(results);
                 }
             );
+            start()
         });
-        start()
     }
     /// remove employeee 
      else if (answer.Remove === "employee") {
         inquirer
-        .prompt({
+        .prompt([{
             type:"input",
-            message:"What is the name of the employee you would like to remove?",
-            name:"removeEmploy"
-        })
+            message:"What is the first name of the employee you would like to remove?",
+            name:"removeEmployFirst"
+        },
+        {
+            type:"input",
+            message:"What is the first name of the employee you would like to remove?",
+            name:"removeEmployLast"
+        }
+    ])
         .then(function(answer){
             console.log(answer);
             connection.connect();
 
             connection.query(
-                "DELETE FROM department WHERE ?",
-                {name:answer.removeEmploy},
+                `DELETE FROM employee WHERE first_name = '${answer.removeEmployFirst}' AND last_name = '${answer.removeEmployLast}'`,
                 function(error,results,field) {
                     if (error) throw error;
                     console.log(results);
                 }
             );
+            start()
         });
-        start()
+        
     }
 
      });
