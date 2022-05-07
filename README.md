@@ -1,4 +1,4 @@
-# Manage Employees
+# Manage Employees ✅
 
 
 
@@ -33,7 +33,9 @@ THEN I am prompted to select an employee to update and their new role and this i
 
 
 
-# Installation 
+# Installation 💻
+
+- MySQL 
 
 - You will need to install necessary dependencies by running the following command
 
@@ -41,11 +43,11 @@ THEN I am prompted to select an employee to update and their new role and this i
   npm i
   
 ```
-# Website 
+# Website 🐙 
 
-The URL of the GitHub repository is 
+The URL of the GitHub repository is https://github.com/Shylag1073/manage-employees
 
-# Questions 
+# Questions 📪 
 
 Please reach out if you have any questions via github https://github.com/Shylag1073
 
